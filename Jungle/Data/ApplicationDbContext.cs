@@ -8,7 +8,6 @@ namespace jungletribe.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {  
         }
-//test branch
         public DbSet<Travelinfo> Travelinfo { get; set; }
 
     }
