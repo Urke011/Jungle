@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model jungletribe.Models.AddNewTravelViewModel
+
+
+<div class="d-flex justify-content-center" style="width: 80%; margin: 0 auto;">
+    <h2 class="mt-3" style="color: #ffac00;">Add new travel</h2>
+</div>
+<form method="post" enctype="multipart/form-data">
+<div class="d-flex justify-content-center" style="width: 80%; margin: 0 auto;">
+ 
+<div class="">
+        <div class="m-4">
+            <label class="form-lable">Traveler Name</label>
+            <input type="text" class="form-control" asp-for="Traveler" required/>
+        </div>
+        <div class="m-4">
+            <label class="form-lable">Traveler Email</label>
+            <input type="text" class="form-control" asp-for="TravelerEmail" required />
+        </div>
+            <div class="m-4">
+            <label class="form-lable">Destinacion</label>
+            <input type="text" class="form-control" asp-for="TravelDestinacion" required />
+            </div>
+       <div class="m-4">
+            <label class="form-lable">Price</label>
+            <input type="text" class="form-control" asp-for="TravelPrice" required />
+       </div>
+            <div class="m-4">
+                <button type="submit" class="btn btn-primary">Save Travel</button>
+            </div>
+</div>
+<div class="" >
+        <div class="m-4">
+            <label class="form-lable">Travel Start</label>
+                <input asp-for="StartDate" type="date" class="form-control" id="start"  min="2024-01-01" max="2034-12-31" required />
+        </div>
+            <div class="m-4">
+            <label class="form-lable">Travel End</label>
+                <input asp-for="EndDate" type="date" class="form-control" id="end" min="2024-01-01" max="2034-12-31" required />
+        </div>
+        <div class="m-4">
+            <label class="form-lable">Continent</label>
+            <select class="form-select" asp-for="TravelContinent" aria-label="Default select" required>
+                <option selected>Select Continent</option>
+                <option value="1">Asia</option>
+                <option value="2">Africa</option>
+                <option value="3">North America</option>
+                <option value="4">South America</option>
+                <option value="5">Antarctica</option>
+                <option value="6">Europe</option>
+                <option value="7">Australia </option>
+            </select>
+        </div>
+        <div class="m-4">
+            <label class="form-lable">Travel Photo</label>
+            <input type="text" asp-for="TravelPhoto" class="form-control" required />
+        </div>
+        
+</div>
+    </form>
+</div>

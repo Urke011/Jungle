@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - jungletribe</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/jungletribe.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class=" navbar-expand-lg bg-body-tertiary">
+            <div class="nav-icons d-flex">
+                <div class="m-2 first-icon">
+                    <img src="@Url.Content("~/images/icons/phone.png")" alt="icons" style="width: 1rem;" />
+                    <p style="display: inline;">
+                        <span>011 2400213</span>
+                        <span class="text-muted">Otvara se u 09:00</span>
+                    </p>
+                </div>
+                <div class="m-2">
+                    <img src="@Url.Content("~/images/icons/letter.png")" alt="icons"
+                         style="width: 1rem;" />
+                    <p style="display: inline;">
+                        <span class="">kontakt@jungletribe.rs</span>
+                    </p>
+                </div>
+            </div>
+            <div class="navbar-wrapper">
+            <div class="">  
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="@Url.Content("~/images/logo-jt-green.svg")" alt="jungle-logo" style="width: 10rem;" />
+                        </a>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-link-two" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Destinacije
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Grupna putovanja
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Avanture i ekspedicije</a></li>
+                                <li><a class="dropdown-item" href="#">Daleke destinacije</a></li>
+                
+                                <li><a class="dropdown-item" href="#">Gradovi evrope</a></li>
+                                        <li><a class="dropdown-item" href="#">Nova godina</a></li>
+                                                <li><a class="dropdown-item" href="#">Proputovanja</a></li>
+                                    <li><a class="dropdown-item" href="#">Letovanja</a></li>
+                                    <li><a class="dropdown-item" href="#">Zimovanja</a></li>
+                                    <li><a class="dropdown-item" href="#">Izleti</a></li>
+                                    <li><a class="dropdown-item" href="#">Krstarenja</a></li>
+                                    <li><a class="dropdown-item" href="#">Akcije</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link navbar-link-third" href="#">Individualna putovanja</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kalendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Putopisi</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                O nama
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Opsti uslovi putovanja</a></li>
+                                <li><a class="dropdown-item" href="#">Politika privatnosti</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Uslovi koriscenja</a></li>
+                                    <li><a class="dropdown-item" href="#">Pravilnik o zastiti podataka</a></li>
+                                    <li><a class="dropdown-item" href="#">Kontakt</a></li>
+                            </ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Search</a>
+                            </li>
+                    </ul>
+                  
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div class="mainImg">
+            <div class="">
+                <img src="@Url.Content("~/images/jtbg.min.jpg")" alt="mainImg" class="w-100" />
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - jungletribe - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
