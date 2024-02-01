@@ -16,8 +16,8 @@ namespace jungletribe.Models
 
         public DateTime EndDate { get; set; }
         public string TravelContinent { get; set; }
-        public string TravelPhoto { get; set; }
         [NotMapped]
         public IFormFile ProfileImage { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

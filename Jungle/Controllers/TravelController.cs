@@ -31,6 +31,18 @@ namespace jungletribe.Controllers
         //insert request with values
         public async Task<IActionResult> AddTravel(AddNewTravelViewModel viewModel)
         {
+            //upload img
+            if (viewModel.ProfileImage != null)
+            {
+                Guid unique = Guid.NewGuid();
+                string folder = "images/travel-images/"+unique+"_";
+                folder += viewModel.ProfileImage.FileName;
+                string serverFolder = Path.Combine(webHostEnvironment.WebRootPath, folder);
+                viewModel.PhotoUrl = "/" + folder;
+                //save img
+                viewModel.ProfileImage.CopyTo(new FileStream(serverFolder, FileMode.Create));
+            }
+
             var travel = new Travelinfo
             {
                 Traveler = viewModel.Traveler,
@@ -40,28 +52,8 @@ namespace jungletribe.Controllers
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 TravelContinent = viewModel.TravelContinent,
-                TravelPhoto = viewModel.TravelPhoto,
-                ProfileImage = viewModel.ProfileImage
-               
+                PhotoUrl = viewModel.PhotoUrl
             };
-         if(travel.TravelPhoto == null)
-            {
-                travel.TravelPhoto = "some test travel path";
-            }
-            string uniqueFileName = null;
-            if (viewModel.ProfileImage != null)
-            {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images/travel-images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + viewModel.ProfileImage.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-             
-                    viewModel.ProfileImage.CopyTo(fileStream);
-             
-                }
-            }
-
 
             await dbContext.Travelinfo.AddAsync(travel);
             await dbContext.SaveChangesAsync();

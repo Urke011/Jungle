@@ -8,7 +8,7 @@ using jungletribe.Data;
 
 #nullable disable
 
-namespace jungletribe.Migrations
+namespace Jungle.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -31,6 +31,10 @@ namespace jungletribe.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("Date");
 
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("Date");
 
@@ -44,10 +48,6 @@ namespace jungletribe.Migrations
 
                     b.Property<int>("TravelPeriod")
                         .HasColumnType("int");
-
-                    b.Property<string>("TravelPhoto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TravelPrice")
                         .HasColumnType("int");

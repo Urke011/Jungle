@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace jungletribe.Migrations
+namespace Jungle.Migrations
 {
     /// <inheritdoc />
-    public partial class intialMigration : Migration
+    public partial class firstmodifidedmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,7 @@ namespace jungletribe.Migrations
                     StartDate = table.Column<DateTime>(type: "Date", nullable: false),
                     EndDate = table.Column<DateTime>(type: "Date", nullable: false),
                     TravelContinent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TravelPhoto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PhotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -9,11 +9,11 @@ using jungletribe.Data;
 
 #nullable disable
 
-namespace jungletribe.Migrations
+namespace Jungle.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240131211339_image not mapped")]
-    partial class imagenotmapped
+    [Migration("20240201205048_first modifided migration")]
+    partial class firstmodifidedmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,10 @@ namespace jungletribe.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("Date");
 
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("Date");
 
@@ -47,10 +51,6 @@ namespace jungletribe.Migrations
 
                     b.Property<int>("TravelPeriod")
                         .HasColumnType("int");
-
-                    b.Property<string>("TravelPhoto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TravelPrice")
                         .HasColumnType("int");

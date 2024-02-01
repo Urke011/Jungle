@@ -9,7 +9,7 @@
 <div class="d-flex justify-content-center" style="width: 80%; margin: 0 auto;">
     <h2 class="mt-3" style="color: #ffac00;">Add new travel</h2>
 </div>
-<form method="post" enctype="multipart/form-data">
+<form method="post" runat="server" enctype="multipart/form-data">
 <div class="d-flex justify-content-center" style="width: 80%; margin: 0 auto;">
  
 <div class="">
@@ -44,8 +44,8 @@
         </div>
         <div class="m-4">
             <label class="form-lable">Continent</label>
-            <select class="form-select" asp-for="TravelContinent" aria-label="Default select" required>
-                <option selected>Select Continent</option>
+                <select class="form-select" asp-for="TravelContinent" required>
+                <option value="">Select Continent</option>
                 <option value="1">Asia</option>
                 <option value="2">Africa</option>
                 <option value="3">North America</option>
@@ -56,10 +56,12 @@
             </select>
         </div>
         <div class="m-4">
-            <label class="form-lable">Travel Photo</label>
-                <input asp-for="ProfileImage" type="file" class="custom-file-input" id="customFile /">
+                <label for="formFile" class="form-label">Travel Photo</label>
+                <input asp-for="ProfileImage" class="form-control" type="file" id="formFile" required>
             </div>
-        
+           
+ 
+        </div>
 </div>
     </form>
 </div>
