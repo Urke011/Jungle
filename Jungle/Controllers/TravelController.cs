@@ -3,7 +3,9 @@ using jungletribe.Models;
 using jungletribe.Models.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace jungletribe.Controllers
@@ -42,7 +44,11 @@ namespace jungletribe.Controllers
                 //save img
                 viewModel.ProfileImage.CopyTo(new FileStream(serverFolder, FileMode.Create));
             }
+           
+            if(viewModel.TravelPeriod != null) {
 
+                viewModel.TravelPeriod = 100;
+            }
             var travel = new Travelinfo
             {
                 Traveler = viewModel.Traveler,
@@ -52,7 +58,8 @@ namespace jungletribe.Controllers
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 TravelContinent = viewModel.TravelContinent,
-                PhotoUrl = viewModel.PhotoUrl
+                PhotoUrl = viewModel.PhotoUrl,
+                TravelPeriod = viewModel.TravelPeriod
             };
 
             await dbContext.Travelinfo.AddAsync(travel);
@@ -60,5 +67,11 @@ namespace jungletribe.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowAllTrips() {
+
+          var allTrips = await dbContext.Travelinfo.ToListAsync();
+            return View(allTrips); }
     }
 }

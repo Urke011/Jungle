@@ -12,8 +12,8 @@ using jungletribe.Data;
 namespace Jungle.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201205048_first modifided migration")]
-    partial class firstmodifidedmigration
+    [Migration("20240202222318_intitial")]
+    partial class intitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

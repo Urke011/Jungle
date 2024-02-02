@@ -19,5 +19,6 @@ namespace jungletribe.Models
         [NotMapped]
         public IFormFile ProfileImage { get; set; }
         public string PhotoUrl { get; set; }
+      
     }
 }

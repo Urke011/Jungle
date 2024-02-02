@@ -54,3 +54,19 @@ body {
     object-fit: cover;
     object-position: 60% 80%;
 }
+.trip-offer{
+    margin: 0 auto;
+    width: 80%;
+}
+.trip-list {
+    border: 2px dotted #7abd30;
+    background-color: #f2f3f5 !important;
+}
+.trip-list img {
+        width: 10rem;
+        height: 6rem;
+        object-fit: cover;
+ }
+.trip-list .col{
+    align-self: center;
+}
