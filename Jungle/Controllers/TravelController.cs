@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Globalization;
 using System.IO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace jungletribe.Controllers
 {
@@ -44,10 +45,18 @@ namespace jungletribe.Controllers
                 //save img
                 viewModel.ProfileImage.CopyTo(new FileStream(serverFolder, FileMode.Create));
             }
-           
-            if(viewModel.TravelPeriod != null) {
+            /*
+             if(viewModel.TravelPeriod != null) {
 
-                viewModel.TravelPeriod = 100;
+                 viewModel.TravelPeriod = 100;
+             }
+            */
+
+            TimeSpan duration = viewModel.EndDate - viewModel.StartDate;
+            int daysPeriod = duration.Days;
+            if (daysPeriod < 0)
+            {
+                daysPeriod = 0;
             }
             var travel = new Travelinfo
             {
@@ -59,13 +68,13 @@ namespace jungletribe.Controllers
                 EndDate = viewModel.EndDate,
                 TravelContinent = viewModel.TravelContinent,
                 PhotoUrl = viewModel.PhotoUrl,
-                TravelPeriod = viewModel.TravelPeriod
+                TravelPeriod = daysPeriod
             };
 
             await dbContext.Travelinfo.AddAsync(travel);
             await dbContext.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("ShowAllTrips", "Travel");
         }
 
         [HttpGet]
