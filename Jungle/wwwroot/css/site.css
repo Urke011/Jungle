@@ -62,11 +62,33 @@ body {
     border: 2px dotted #7abd30;
     background-color: #f2f3f5 !important;
 }
+.trip-list:hover{
+    border: 2px solid #7abd30;
+}
 .trip-list img {
-        width: 10rem;
-        height: 6rem;
-        object-fit: cover;
- }
+    width: 10rem;
+    height: 6rem;
+    object-fit: cover;
+}
 .trip-list .col{
     align-self: center;
+}
+.more-info button {
+    font-size: x-small;
+    background-color: #7abd30 !important;
+    border: #7abd30 !important;
+    white-space: nowrap;
+}
+    .more-info button:visited {
+        border: #7abd30 !important;
+    }
+.btn:focus {
+    box-shadow: none !important;
+}
+.question-btn {
+    background-color: #fd7e14 !important;
+}
+.question-info button {
+    font-size: x-small;
+    white-space: nowrap;
 }

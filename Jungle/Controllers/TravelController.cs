@@ -45,19 +45,18 @@ namespace jungletribe.Controllers
                 //save img
                 viewModel.ProfileImage.CopyTo(new FileStream(serverFolder, FileMode.Create));
             }
-            /*
-             if(viewModel.TravelPeriod != null) {
-
-                 viewModel.TravelPeriod = 100;
-             }
-            */
-
+           //caluculate days duration
             TimeSpan duration = viewModel.EndDate - viewModel.StartDate;
             int daysPeriod = duration.Days;
             if (daysPeriod < 0)
             {
                 daysPeriod = 0;
             }
+
+            //if TravelPrice is bigger then int
+           
+           
+
             var travel = new Travelinfo
             {
                 Traveler = viewModel.Traveler,
@@ -82,5 +81,11 @@ namespace jungletribe.Controllers
 
           var allTrips = await dbContext.Travelinfo.ToListAsync();
             return View(allTrips); }
+
+        [HttpGet]
+        public async Task<IActionResult> Description(Guid id)
+        {
+            return View();
+        }
     }
 }
