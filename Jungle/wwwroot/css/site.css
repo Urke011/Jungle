@@ -69,7 +69,7 @@ body {
 .trip-list img {
     width: 10rem;
     height: 6rem;
-    object-fit: cover;
+    object-fit: fill;
 }
 .trip-list .col{
     align-self: center;
