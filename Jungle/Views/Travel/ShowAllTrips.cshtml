@@ -5,6 +5,11 @@
 @{
 }
 @model List<jungletribe.Models.Entities.Travelinfo>
+<div class="mainImg">
+    <div class="">
+        <img src="@Url.Content("~/images/logo/jtbg.min.jpg")" alt="mainImg" class="w-100" />
+    </div>
+</div>
 <div class="trip-offer mt-5">
     <h2 class="text-center">Upcoming<img src="@Url.Content("~/images/logo/logo-jt-green1.png")" alt="icons" class="p-3" style="width: 6rem;" />trips</h2>
     @foreach (var trip in Model)

@@ -95,10 +95,10 @@ namespace jungletribe.Controllers
             var singleTrip = await dbContext.Travelinfo.FirstOrDefaultAsync(t => t.Id == id);
             string apiKey = "566362106b93ae738477ddbb292d1712";
             string cityName = singleTrip.TravelDestinacion;
-            
+            string units = "metric";
             using (var client = new HttpClient())
             {
-                var endpoint = new Uri($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&APPID={apiKey}");
+                var endpoint = new Uri($"https://api.openweathermap.org/data/2.5/weather?q={cityName}&units={units}&APPID={apiKey}");
                 var result = await client.GetAsync(endpoint);
 
                 if (result.IsSuccessStatusCode)

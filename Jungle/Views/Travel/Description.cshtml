@@ -1,14 +1,73 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using System.Globalization
 
 @model jungletribe.Models.TripWeatherViewModel
 
 
-<h1>Description page</h1>
+<div class="nav-description-img mt-5">
+    <img src="@Model.SingleTrip.PhotoUrl" class="w-100" />
+</div>
+<div class="trip-decrption">
+    <h1 style="text-align: center;">@Model.SingleTrip.TravelDestinacion</h1>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6">
+            <h4>About traveling:</h4>
+            <div>
+                <div>
+                    <span><b>From: </b> </span><span>@Model.SingleTrip.StartDate.ToString("d/M/yyyy")</span>
+                </div>
+                <div>
+                    <span><b>To: </b></span><span>@Model.SingleTrip.EndDate.ToString("d/M/yyyy")</span>
+                </div>
+                    <div>
+                    <span><b>Price </b></span> <span>
+                        @if (Model.SingleTrip.TravelPrice != null)
+                        {
+                            // Specify CultureInfo for Euro formatting
+                            CultureInfo euroCulture = new CultureInfo("en-US");
+                            euroCulture.NumberFormat.CurrencySymbol = "€";
+                            // ToString() method with Euro formatting
+                            string amtToString = String.Format(euroCulture, "{0:C}", Model.SingleTrip.TravelPrice);
 
-<p>@Model.SingleTrip.TravelContinent</p>
-<img src="https://flagsapi.com/@Model.FormattedWeatherData.sys.country/flat/64.png">
-<p>@Model.FormattedWeatherData.sys.country</p>
+                            // Move the currency symbol to the end
+                            amtToString = $"{amtToString.Substring(1)}{amtToString[0]}";
+                            @amtToString
+                        }
+                    </span>
+                </div>
+                        <div>
+                    <span><b>Period</b></span> <span>@Model.SingleTrip.TravelPeriod days</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="discription-box" style="text-align:center;">
+            <p>Basic info about country:</p>
+            <img src="https://flagsapi.com/@Model.FormattedWeatherData.sys.country/flat/64.png">
+                <div>
+                Current temperature:
+                    @if (Model.FormattedWeatherData.main.temp != null)
+                    {
+                        string c = "°C";
+                        double temperature =         Model.FormattedWeatherData.main.temp;
+                        string formattedTemperature = temperature.ToString("0") + c;
+                        @formattedTemperature
+                        
+                    }
+                   
+
+                </div>
+                <div>
+                    Current time:
+                    @if(Model.FormattedWeatherData != null)
+                    {
+                           
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

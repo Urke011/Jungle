@@ -93,3 +93,15 @@ body {
     font-size: x-small;
     white-space: nowrap;
 }
+.trip-decrption{
+    width: 80%;
+    margin: 0 auto;
+}
+.nav-description-img img{
+    width: 100% !important;
+    height: 35rem;
+    object-fit: cover;
+}
+.discription-box {
+    border: 1px solid #7abd30;
+}
