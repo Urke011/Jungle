@@ -4,9 +4,11 @@
 @{
 }
 
-@model jungletribe.Models.Entities.Travelinfo
+@model jungletribe.Models.TripWeatherViewModel
 
 
 <h1>Description page</h1>
 
-<p>@Model.TravelDestinacion</p>
+<p>@Model.SingleTrip.TravelContinent</p>
+<img src="https://flagsapi.com/@Model.FormattedWeatherData.sys.country/flat/64.png">
+<p>@Model.FormattedWeatherData.sys.country</p>

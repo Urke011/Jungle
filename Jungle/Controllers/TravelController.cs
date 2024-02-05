@@ -104,9 +104,15 @@ namespace jungletribe.Controllers
                 if (result.IsSuccessStatusCode)
                 {
                     var json = await result.Content.ReadAsStringAsync();
-                     var  formatedJson = JsonConvert.DeserializeObject(json);
+                    //var  formattedJson = JsonConvert.SerializeObject(json);
+                    Models.JsonModel.RootObject objJson = JsonConvert.DeserializeObject<Models.JsonModel.RootObject>(json);
 
-                    return View(singleTrip);
+                    var fetchedModel = new TripWeatherViewModel
+                    {
+                        SingleTrip = singleTrip,
+                        FormattedWeatherData = objJson
+                    };
+                    return View(fetchedModel);
                 }
                 else
                 {
