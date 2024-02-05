@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.IO;
 using System.Xml;
@@ -57,8 +58,8 @@ namespace jungletribe.Controllers
             {
                 daysPeriod = 0;
             }
-     
-
+            //country name
+            var selectedDestination = Request.Form["TravelDestinacion"];
 
             var travel = new Travelinfo
             {
