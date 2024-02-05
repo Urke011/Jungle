@@ -88,7 +88,11 @@
                         var currentTimeInSeconds = dt + timezone;
                         var currentTimeInMilliseconds = currentTimeInSeconds * 1000;
                         var currentDateTime = DateTimeOffset.FromUnixTimeMilliseconds((long)currentTimeInMilliseconds).DateTime;
-                        <p>Current Time: @currentDateTime.ToString("HH:mm")</p>
+
+                        // Subtract 30 minutes from the current time
+                        var updatedDateTime = currentDateTime.AddMinutes(-30);
+
+                        <p>Current Time: @updatedDateTime.ToString("HH:mm")</p>
                     }
 
                 </div>
