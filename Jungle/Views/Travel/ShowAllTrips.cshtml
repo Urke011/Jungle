@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Newtonsoft.Json
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -103,8 +104,34 @@
             </div>
             <div class="col">
                 <div>
+                    @if (trip.TravelDestinacion != null)
+                    {
+                        string responseContent = $"https://restcountries.com/v3.1/capital/{trip.TravelDestinacion}";
 
-                    <h3>@trip.TravelDestinacion</h3>
+                        // Make the API call
+                        HttpClient client = new HttpClient();
+                        HttpResponseMessage response = await client.GetAsync(responseContent);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseData = await response.Content.ReadAsStringAsync();
+                            dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseData);
+
+                            if (responseObject != null && responseObject[0].name.common == "United States Minor Outlying Islands")
+                            {
+                                <h3>United States</h3>
+                            }
+                            else
+                            {
+                                <h3>@responseObject[0].name.common</h3>
+                            }
+                        }
+                        else
+                        {
+                            <p>Error: Unable to retrieve country information</p>
+                        }
+                    }
+                    
                 </div>
             </div>
             <div class="col">
