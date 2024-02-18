@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Newtonsoft.Json
 
 @model jungletribe.Models.TripWeatherViewModel
 
@@ -81,18 +82,36 @@
 
                 </div>
                 <div>
-                    @if(Model.FormattedWeatherData != null)
+                    @if (@Model.SingleTrip.TravelDestinacion !=null)
                     {
-                        var dt = Model.FormattedWeatherData.dt;
-                        var timezone = Model.FormattedWeatherData.timezone;
-                        var currentTimeInSeconds = dt + timezone;
-                        var currentTimeInMilliseconds = currentTimeInSeconds * 1000;
-                        var currentDateTime = DateTimeOffset.FromUnixTimeMilliseconds((long)currentTimeInMilliseconds).DateTime;
+                        string name = Model.SingleTrip.TravelDestinacion;
+                        string apiKey = "jZrt7CJYS31eKCAai9Z7+A==ZWry7KlFfX4r8yb0";
+                        string apiUrl = $"https://api.api-ninjas.com/v1/worldtime?city={name}";
 
-                        // Subtract 30 minutes from the current time
-                        var updatedDateTime = currentDateTime.AddMinutes(-30);
+                        using (HttpClient client = new HttpClient())
+                        {
+                            client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
 
-                        <p>Current Time: @updatedDateTime.ToString("HH:mm")</p>
+                            HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                string responseContent = await          response.Content.ReadAsStringAsync();
+                                dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseContent);
+
+                                // Extract hour from the response object
+                                string hour = responseObject.hour;
+                                string minute = responseObject.minute;
+                                <p>Current Time: @hour:@minute </p>
+                            }
+                            else
+                            {
+                                <p>Current Time: @response.StatusCode</p>
+
+                            }
+                        }
+
+                       
                     }
 
                 </div>
