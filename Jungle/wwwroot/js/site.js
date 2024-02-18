@@ -2,3 +2,21 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+$(document).ready(function () {
+    let countryName = $(".countryName")
+
+    //search fields
+    $('#searchBox').change(function () {
+        // Get the selected value
+        var selectedValue = $(this).val();
+
+        // Do something with the selected value
+        alert("Selected value:" + selectedValue);
+        if (selectedValue == "Alphabetically") {
+            var tripRow = $(".trip-list");
+            var tripRowContryName = $(".trip-list .countryName");
+            console.log(tripRowContryName);
+        }
+    });
+});
+

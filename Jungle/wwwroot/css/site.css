@@ -121,3 +121,8 @@ body {
 .discription-box {
     border: 1px solid #7abd30;
 }
+.select-box {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 10rem;
+}
