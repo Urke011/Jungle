@@ -21,160 +21,163 @@
         <option value="3">Three</option>
     </select>
     </div>
-    @foreach (var trip in Model)
-    {
-        <div class="trip-list row">
+    <div class="trip-list-wrapper">
+        @foreach (var trip in Model)
+        {
+            <div class="trip-list row mb-4">
                 <div class="col">
                     <div>
-                    <b>Journey starts</b>
+                        <b>Journey starts</b>
                     </div>
                     <div>
-                    <span class="tripStarts">@trip.StartDate.ToString("d/M/yyyy")</span>
-                    </div>
-                <div class="">
-                    <div>
-                        <b>Journey end</b>
+                        <span class="tripStarts">@trip.StartDate.ToString("d/M/yyyy")</span>
                     </div>
                     <div class="">
-                        <span>@trip.EndDate.ToString("d/M/yyyy")</span>
+                        <div>
+                            <b>Journey end</b>
+                        </div>
+                        <div class="">
+                            <span>@trip.EndDate.ToString("d/M/yyyy")</span>
+                        </div>
                     </div>
                 </div>
-                </div>
-              
-            
-            <div class="col">
-                <div class="">
-                    <b>Travel Period</b>
-                </div>
-                <div>        
-                   @trip.TravelPeriod days                  
-                </div>
-            </div>
-            <div class="col">
-                <div class="">
-                    <b>Continent:</b>
-                </div>
-                <div class="">
-                    @if (Convert.ToInt32(trip.TravelContinent) == 1)
-                    {
-                        var travelContinent = "Asia";
-                        @travelContinent
-                        ;
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 2)
-                    {
-                        var travelContinent = "Africa";
-                        @travelContinent
-                        ;
-                        
 
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 3)
-                    {
-                        var travelContinent = "North America";
-                        @travelContinent
-                        ;
-                        
 
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 4)
-                    {
-                        var travelContinent = "South America";
-                        @travelContinent
-                        ;
-                   
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 5)
-                    {
-                        var travelContinent = "Antarctica";
-                        @travelContinent
-                        ;
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 6)
-                    {
-                        var travelContinent = "Europe";
-                        @travelContinent
-                        ;
-                    }
-                    @if (Convert.ToInt32(@trip.TravelContinent) == 7)
-                    {
-                        var travelContinent = "Australia";
-                        @travelContinent
-                        ;
-
-                    }
+                <div class="col">
+                    <div class="">
+                        <b>Travel Period</b>
+                    </div>
+                    <div>
+                        @trip.TravelPeriod days
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div>
-                    <img src="@trip.PhotoUrl" alt="travel-photo" />
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    @if (trip.TravelDestinacion != null)
-                    {
-                        string responseContent = $"https://restcountries.com/v3.1/capital/{trip.TravelDestinacion}";
-
-                        // Make the API call
-                        HttpClient client = new HttpClient();
-                        HttpResponseMessage response = await client.GetAsync(responseContent);
-
-                        if (response.IsSuccessStatusCode)
+                <div class="col">
+                    <div class="">
+                        <b>Continent:</b>
+                    </div>
+                    <div class="">
+                        @if (Convert.ToInt32(trip.TravelContinent) == 1)
                         {
-                            string responseData = await response.Content.ReadAsStringAsync();
-                            dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseData);
+                            var travelContinent = "Asia";
+                            @travelContinent
+                            ;
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 2)
+                        {
+                            var travelContinent = "Africa";
+                            @travelContinent
+                            ;
 
-                            if (responseObject != null && responseObject[0].name.common == "United States Minor Outlying Islands")
+
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 3)
+                        {
+                            var travelContinent = "North America";
+                            @travelContinent
+                            ;
+
+
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 4)
+                        {
+                            var travelContinent = "South America";
+                            @travelContinent
+                            ;
+
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 5)
+                        {
+                            var travelContinent = "Antarctica";
+                            @travelContinent
+                            ;
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 6)
+                        {
+                            var travelContinent = "Europe";
+                            @travelContinent
+                            ;
+                        }
+                        @if (Convert.ToInt32(@trip.TravelContinent) == 7)
+                        {
+                            var travelContinent = "Australia";
+                            @travelContinent
+                            ;
+
+                        }
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <img src="@trip.PhotoUrl" alt="travel-photo" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        @if (trip.TravelDestinacion != null)
+                        {
+                            string responseContent = $"https://restcountries.com/v3.1/capital/{trip.TravelDestinacion}";
+
+                            // Make the API call
+                            HttpClient client = new HttpClient();
+                            HttpResponseMessage response = await client.GetAsync(responseContent);
+
+                            if (response.IsSuccessStatusCode)
                             {
-                                <h3 class="countryName">United States</h3>
+                                string responseData = await response.Content.ReadAsStringAsync();
+                                dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseData);
+
+                                if (responseObject != null && responseObject[0].name.common == "United States Minor Outlying Islands")
+                                {
+                                    <h3 class="countryName">United States</h3>
+                                }
+                                else
+                                {
+                                    <h3 class="countryName">@responseObject[0].name.common</h3>
+                                }
                             }
                             else
                             {
-                                <h3 class="countryName">@responseObject[0].name.common</h3>
+                                <p>Error: Unable to retrieve country information</p>
                             }
                         }
-                        else
-                        {
-                            <p>Error: Unable to retrieve country information</p>
-                        }
-                    }
-                    
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <span><b>Price</b></span>
-                    <div>
-                       
-                        @if (trip.TravelPrice != null)
-                        {
-                            // Specify CultureInfo for Euro formatting
-                            CultureInfo euroCulture = new CultureInfo("en-US");
-                            euroCulture.NumberFormat.CurrencySymbol = "€";
-                            // ToString() method with Euro formatting
-                            string amtToString = String.Format(euroCulture, "{0:C}", trip.TravelPrice);
 
-                            // Move the currency symbol to the end
-                            amtToString = $"{amtToString.Substring(1)}{amtToString[0]}";
-                           <span class="tripPrice">@amtToString</span>
-                        }
                     </div>
-                    <div class="d-flex">
-                    <div class="more-info m-1">
-                            <a href='@Url.Action("Description", "Travel", new {id = trip.Id})'>
-                        <button type="button" asp-for="" class="btn text-white">More info</button>
-                        </a>
-                       
-                    </div>
-                        <div class="question-info m-1">
-                            <button type="button" class="btn question-btn text-white">Question</button>
-                                     
-                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <span><b>Price</b></span>
+                        <div>
+
+                            @if (trip.TravelPrice != null)
+                            {
+                                // Specify CultureInfo for Euro formatting
+                                CultureInfo euroCulture = new CultureInfo("en-US");
+                                euroCulture.NumberFormat.CurrencySymbol = "€";
+                                // ToString() method with Euro formatting
+                                string amtToString = String.Format(euroCulture, "{0:C}", trip.TravelPrice);
+
+                                // Move the currency symbol to the end
+                                amtToString = $"{amtToString.Substring(1)}{amtToString[0]}";
+                                <span class="tripPrice">@amtToString</span>
+                            }
+                        </div>
+                        <div class="d-flex">
+                            <div class="more-info m-1">
+                                <a href='@Url.Action("Description", "Travel", new {id = trip.Id})'>
+                                    <button type="button" asp-for="" class="btn text-white">More info</button>
+                                </a>
+
+                            </div>
+                            <div class="question-info m-1">
+                                <button type="button" class="btn question-btn text-white">Question</button>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br />
-    }    
+           
+        }
+    </div> 
+       
 </div>
