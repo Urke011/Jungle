@@ -9,10 +9,7 @@ $(document).ready(function () {
     $('#searchBox').change(function () {
         // Get the selected value
         var selectedValue = $(this).val();
-
-        // Do something with the selected value
-       // alert("Selected value:" + selectedValue);
-        if (selectedValue == "Alphabetically") {
+        if (selectedValue == "1") {
             var tripRowContryName = $(".countryName");
             let parents = tripRowContryName.parent().parent().parent();
             $.each(tripRowContryName, function (index) {
@@ -43,7 +40,6 @@ $(document).ready(function () {
                 // Append the div to its sorted position
                 $currentDiv.appendTo('.trip-list-wrapper');
             });
-
             // Apply display: flex to all divs with class 'trip-list'
             $('.trip-list').css('display', 'flex');
                
