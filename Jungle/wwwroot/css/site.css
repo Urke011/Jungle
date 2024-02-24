@@ -126,3 +126,7 @@ body {
     justify-content: flex-end;
     min-width: 10rem;
 }
+.select-box .form-select {
+    border: 1px solid #7abd30;
+}
+

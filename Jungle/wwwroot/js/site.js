@@ -3,22 +3,20 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
-    let countryName = $(".countryName")
-
+    let countryName = $(".countryName");
     //search fields
+    var tripRowContryName = $(".countryName");
+    let parents = tripRowContryName.parent().parent().parent();
+    //add uniq id
+    $.each(tripRowContryName, function (index) {
+        let names = $(this).html();
+        let uniqueId = names.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(''); // Creating a unique ID using the index
+        parents.eq(index).attr('id', uniqueId); // Setting ID for the corresponding parent element
+    })
     $('#searchBox').change(function () {
         // Get the selected value
         var selectedValue = $(this).val();
         if (selectedValue == "1") {
-            var tripRowContryName = $(".countryName");
-            let parents = tripRowContryName.parent().parent().parent();
-            $.each(tripRowContryName, function (index) {
-                let names = $(this).html();
-                let uniqueId = names.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(''); // Creating a unique ID using the index
-                parents.eq(index).attr('id', uniqueId); // Setting ID for the corresponding parent element
-                //remove all div elements
-                $(".trip-list").css("display", "none");
-            })
             var idsArray = [];
             // Sort the array alphabetically
             // Iterate over each element with class 'trip-list'
@@ -31,19 +29,45 @@ $(document).ready(function () {
             console.log(idsArray);
             idsArray.sort();
             // Detach all divs with class 'trip-list'
-            var $tripLists = $('.trip-list').detach();
+            var tripLists = $('.trip-list').detach();
             // Append divs in sorted order
             idsArray.forEach(function (id) {
                 // Find div element by id
-                var $currentDiv = $tripLists.filter('#' + id);
-
+                var currentDiv = tripLists.filter('#' + id);
                 // Append the div to its sorted position
-                $currentDiv.appendTo('.trip-list-wrapper');
+                currentDiv.appendTo('.trip-list-wrapper');
             });
             // Apply display: flex to all divs with class 'trip-list'
             $('.trip-list').css('display', 'flex');
                
         }
+        var priceArray = [];
+        if (selectedValue == "2") {
+            $('.tripPrice').each(function () {
+                var price = $(this).text();
+                // Remove special characters and convert to number
+                var numericPrice = parseFloat(price.replace(/[^0-9.-]+/g, ""));
+                var tripListElement = $(this).closest('.trip-list');
+                var tripListId = tripListElement.length > 0 ? tripListElement.attr('id') : undefined;
+                // Push an object containing both numericPrice and tripListId to the array
+                priceArray.push({ price: numericPrice, tripListId: tripListId });
+            });
+            // Sort the array based on numericPrice
+            priceArray.sort((a, b) => a.price - b.price);
+            console.log(priceArray);
+            tripLists = $('.trip-list').detach();
+            // Append divs in sorted order
+            priceArray.forEach(function (item) {
+                // Find div element by id
+                var currentDiv = tripLists.filter("#"+item.tripListId)
+                    // Append the div to its sorted position
+                    $('.trip-list-wrapper').append(currentDiv);
+               
+            });
+            // Apply display: flex to all divs with class 'trip-list'
+            $('.trip-list').css('display', 'flex');
+        }
+
     });
 });
 
