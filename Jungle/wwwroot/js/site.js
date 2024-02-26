@@ -17,7 +17,7 @@ $(document).ready(function () {
         $('#searchBox').prop('selectedIndex', 0);
     }
     function resetSelectBox() {
-        /
+        
         $('#searchBox').prop('selectedIndex', 0); 
     }
     let countryName = $(".countryName");
