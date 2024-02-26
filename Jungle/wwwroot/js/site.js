@@ -3,6 +3,23 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
+
+
+    // Restore select box value on page load
+    restoreSelectBox();
+
+    // Reset select box when navigating to another link
+    $('a').click(function () {
+        resetSelectBox();
+    });
+    function restoreSelectBox() {
+        
+        $('#searchBox').prop('selectedIndex', 0);
+    }
+    function resetSelectBox() {
+        /
+        $('#searchBox').prop('selectedIndex', 0); 
+    }
     let countryName = $(".countryName");
     //search fields
     var tripRowContryName = $(".countryName");
@@ -68,6 +85,37 @@ $(document).ready(function () {
             $('.trip-list').css('display', 'flex');
         }
 
+        var periodArray = [];
+        if (selectedValue == "3") {
+            $('.travelPeriod').each(function () {
+                var duration = $(this).text();
+                // Remove special characters and convert to number
+                var periodDuration = parseFloat(duration.replace(/[^0-9.-]+/g, ""));
+                var numericValue = parseFloat(periodDuration.toString().replace(/\D/g, ''));
+                var tripListElement = $(this).closest('.trip-list');
+                var tripListId = tripListElement.length > 0 ? tripListElement.attr('id') : undefined;
+                // Push an object containing both numericPrice and tripListId to the array
+                // Extract only the numeric value and remove trailing spaces
+              
+                periodArray.push({ duration: numericValue, tripListId: tripListId });
+            });
+            // Sort the array based on numericPrice
+            periodArray.sort(function (a, b) {
+                return a.duration - b.duration;
+            });
+            console.log(periodArray);
+            tripLists = $('.trip-list').detach();
+            // Append divs in sorted order
+            periodArray.forEach(function (item) {
+                // Find div element by id
+                var currentDiv = tripLists.filter("#" + item.tripListId)
+                // Append the div to its sorted position
+                $('.trip-list-wrapper').append(currentDiv);
+
+            });
+            // Apply display: flex to all divs with class 'trip-list'
+            $('.trip-list').css('display', 'flex');
+        }
     });
 });
 
