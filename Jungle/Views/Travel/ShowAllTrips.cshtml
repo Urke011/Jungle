@@ -114,33 +114,36 @@
                 </div>
                 <div class="col">
                     <div>
-                        @if (trip.TravelDestinacion != null)
-                        {
-                            string responseContent = $"https://restcountries.com/v3.1/capital/{trip.TravelDestinacion}";
+                        @*
+                    @if (trip.TravelDestinacion != null)
+                    {
+                    string responseContent = $"https://restcountries.com/v3.1/capital/{trip.TravelDestinacion}";
 
-                            // Make the API call
-                            HttpClient client = new HttpClient();
-                            HttpResponseMessage response = await client.GetAsync(responseContent);
+                    // Make the API call
+                    HttpClient client = new HttpClient();
+                    HttpResponseMessage response = await client.GetAsync(responseContent);
 
-                            if (response.IsSuccessStatusCode)
-                            {
-                                string responseData = await response.Content.ReadAsStringAsync();
-                                dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseData);
+                    if (response.IsSuccessStatusCode)
+                    {
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    dynamic responseObject = JsonConvert.DeserializeObject<dynamic>(responseData);
 
-                                if (responseObject != null && responseObject[0].name.common == "United States Minor Outlying Islands")
-                                {
-                                    <h3 class="countryName">United States</h3>
-                                }
-                                else
-                                {
-                                    <h3 class="countryName">@responseObject[0].name.common</h3>
-                                }
-                            }
-                            else
-                            {
-                                <p>Error: Unable to retrieve country information</p>
-                            }
-                        }
+                    if (responseObject != null && responseObject[0].name.common == "United States Minor Outlying Islands")
+                    {
+                    <h3 class="countryName">United States</h3>
+                    }
+                    else
+                    {
+                    <h3 class="countryName">@responseObject[0].name.common</h3>
+                    }
+                    }
+                    else
+                    {
+                    <p>Error: Unable to retrieve country information</p>
+                    }
+                    }
+                        *@
+                        <h3 class="countryName">@trip.TravelDestinacion</h3>
 
                     </div>
                 </div>
