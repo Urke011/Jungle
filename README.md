@@ -1,6 +1,6 @@
 # Jungle - Travel Agency Website
 
-Welcome to the Jungle project! This is a travel agency website built using **ASP.NET**. The platform offers tourist packages and services, allowing users to browse, book, and manage their travel arrangements. The website supports basic CRUD operations, API integration, and caching mechanisms for improved performance.
+This is a travel agency website built using **ASP.NET**. The platform offers tourist packages and services, allowing users to browse, book, and manage their travel arrangements. The website supports basic CRUD operations, API integration, and caching mechanisms for improved performance.
 
 ## Features
 
@@ -25,7 +25,7 @@ Follow the steps below to set up and run the project locally.
 Start by cloning the project to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/jungletribe.git
+git clone https://github.com/Urke011/Jungle.git
 ```
 ### 2. Restore dependencies
 
